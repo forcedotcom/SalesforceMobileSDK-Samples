@@ -1,17 +1,15 @@
-<apex:page showHeader="false"  standardStylesheets="false" cache="false" controller="CloudtunesController" >
+<apex:page showHeader="false"  standardStylesheets="false" cache="true" controller="CloudtunesController" >
 <apex:outputText escape="false" value="{!'<!DOCTYPE html>'}"/>
 <html>
 <head>
 <title>Cloudtunes</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" href="{!URLFOR($Resource.cloudtunes, 'css/jquery.mobile-1.0rc2.min.css')}" />
-<script type="text/javascript" src="{!URLFOR($Resource.cloudtunes, 'js/jquery.min.js')}"></script>
-<script type="text/javascript" src="{!URLFOR($Resource.cloudtunes, 'js/jquery.mobile-1.0rc2.min.js')}"></script>
-<script type="text/javascript" src="{!URLFOR($Resource.cloudtunes, 'js/cloudtunes.js')}"></script>
-<!-- 
-<script type="text/javascript" src="phonegap-1.0.0.js"></script>
--->
 
+<link rel="stylesheet" href="{!URLFOR($Resource.cloudtunes_jQuery, 'jquery.mobile-1.0rc2.min.css')}" />
+<script type="text/javascript" src="{!URLFOR($Resource.cloudtunes_jQuery, 'jquery.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.cloudtunes_jQuery, 'jquery.mobile-1.0rc2.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.cloudtunes)}"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
 </head>
 
