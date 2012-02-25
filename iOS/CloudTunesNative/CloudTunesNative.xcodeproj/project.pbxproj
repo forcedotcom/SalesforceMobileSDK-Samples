@@ -18,7 +18,6 @@
 		7DD9537314771D0F0006BF23 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DD9537114771D0F0006BF23 /* InfoPlist.strings */; };
 		7DD9537514771D0F0006BF23 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9537414771D0F0006BF23 /* main.m */; };
 		7DD9537714771D0F0006BF23 /* CloudTunesNative-Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 7DD9537614771D0F0006BF23 /* CloudTunesNative-Prefix.pch */; };
-		7DD9541314771D120006BF23 /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD9541214771D120006BF23 /* libsbjson-ios.a */; };
 		7DD9541714771D120006BF23 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD9541614771D120006BF23 /* icon-72.png */; };
 		7DD9541914771D120006BF23 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD9541814771D120006BF23 /* icon.png */; };
 		7DD9541B14771D120006BF23 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD9541A14771D120006BF23 /* icon@2x.png */; };
@@ -56,16 +55,6 @@
 		7DD9537214771D0F0006BF23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DD9537414771D0F0006BF23 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7DD9537614771D0F0006BF23 /* CloudTunesNative-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CloudTunesNative-Prefix.pch"; sourceTree = "<group>"; };
-		7DD9540914771D120006BF23 /* NSObject+SBJson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "dependencies/SBJson/include/SBJson/NSObject+SBJson.h"; sourceTree = "<group>"; };
-		7DD9540A14771D120006BF23 /* SBJson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = dependencies/SBJson/include/SBJson/SBJson.h; sourceTree = "<group>"; };
-		7DD9540B14771D120006BF23 /* SBJsonParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SBJsonParser.h; path = dependencies/SBJson/include/SBJson/SBJsonParser.h; sourceTree = "<group>"; };
-		7DD9540C14771D120006BF23 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParser.h; path = dependencies/SBJson/include/SBJson/SBJsonStreamParser.h; sourceTree = "<group>"; };
-		7DD9540D14771D120006BF23 /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserAccumulator.h; path = dependencies/SBJson/include/SBJson/SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
-		7DD9540E14771D120006BF23 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserAdapter.h; path = dependencies/SBJson/include/SBJson/SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
-		7DD9540F14771D120006BF23 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriter.h; path = dependencies/SBJson/include/SBJson/SBJsonStreamWriter.h; sourceTree = "<group>"; };
-		7DD9541014771D120006BF23 /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriterAccumulator.h; path = dependencies/SBJson/include/SBJson/SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
-		7DD9541114771D120006BF23 /* SBJsonWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = dependencies/SBJson/include/SBJson/SBJsonWriter.h; sourceTree = "<group>"; };
-		7DD9541214771D120006BF23 /* libsbjson-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsbjson-ios.a"; path = "dependencies/SBJson/libsbjson-ios.a"; sourceTree = "<group>"; };
 		7DD9541614771D120006BF23 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-72.png"; path = "Resources/icons/icon-72.png"; sourceTree = "<group>"; };
 		7DD9541814771D120006BF23 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Resources/icons/icon.png; sourceTree = "<group>"; };
 		7DD9541A14771D120006BF23 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "Resources/icons/icon@2x.png"; sourceTree = "<group>"; };
@@ -191,7 +180,6 @@
 				7DD9536914771D0F0006BF23 /* CoreGraphics.framework in Frameworks */,
 				7DD9536B14771D0F0006BF23 /* CFNetwork.framework in Frameworks */,
 				7DD9536D14771D0F0006BF23 /* MobileCoreServices.framework in Frameworks */,
-				7DD9541314771D120006BF23 /* libsbjson-ios.a in Frameworks */,
 				7DD9543A14771D120006BF23 /* libxml2.dylib in Frameworks */,
 				82DD458614F8BA6C0093B2DF /* libRestKit.a in Frameworks */,
 				82DD458D14F8BB730093B2DF /* libSalesforceOAuth.a in Frameworks */,
@@ -266,42 +254,8 @@
 				7DD9543914771D120006BF23 /* libxml2.dylib */,
 				82DD453214F8BA6C0093B2DF /* RestKit */,
 				82DD458714F8BB730093B2DF /* SalesforceOAuth */,
-				7DD9540614771D120006BF23 /* SBJson */,
 			);
 			name = dependencies;
-			sourceTree = "<group>";
-		};
-		7DD9540614771D120006BF23 /* SBJson */ = {
-			isa = PBXGroup;
-			children = (
-				7DD9541214771D120006BF23 /* libsbjson-ios.a */,
-				7DD9540714771D120006BF23 /* include */,
-			);
-			name = SBJson;
-			sourceTree = "<group>";
-		};
-		7DD9540714771D120006BF23 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				7DD9540814771D120006BF23 /* SBJson */,
-			);
-			name = include;
-			sourceTree = "<group>";
-		};
-		7DD9540814771D120006BF23 /* SBJson */ = {
-			isa = PBXGroup;
-			children = (
-				7DD9540914771D120006BF23 /* NSObject+SBJson.h */,
-				7DD9540A14771D120006BF23 /* SBJson.h */,
-				7DD9540B14771D120006BF23 /* SBJsonParser.h */,
-				7DD9540C14771D120006BF23 /* SBJsonStreamParser.h */,
-				7DD9540D14771D120006BF23 /* SBJsonStreamParserAccumulator.h */,
-				7DD9540E14771D120006BF23 /* SBJsonStreamParserAdapter.h */,
-				7DD9540F14771D120006BF23 /* SBJsonStreamWriter.h */,
-				7DD9541014771D120006BF23 /* SBJsonStreamWriterAccumulator.h */,
-				7DD9541114771D120006BF23 /* SBJsonWriter.h */,
-			);
-			name = SBJson;
 			sourceTree = "<group>";
 		};
 		7DD9541414771D120006BF23 /* Resources */ = {
@@ -688,7 +642,6 @@
 					"\"$(SRCROOT)/CloudTunesNative/dependencies/RestKit\"",
 					"\"$(SRCROOT)/CloudTunesNative/dependencies/SalesforceOAuth\"",
 					"\"$(SRCROOT)/CloudTunesNative/dependencies/SalesforceSDK\"",
-					"\"$(SRCROOT)/CloudTunesNative/dependencies/SBJson\"",
 					"\"$(SDKROOT)//usr/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -707,7 +660,6 @@
 					"\"$(SRCROOT)/CloudTunesNative/dependencies/RestKit\"",
 					"\"$(SRCROOT)/CloudTunesNative/dependencies/SalesforceOAuth\"",
 					"\"$(SRCROOT)/CloudTunesNative/dependencies/SalesforceSDK\"",
-					"\"$(SRCROOT)/CloudTunesNative/dependencies/SBJson\"",
 					"\"$(SDKROOT)//usr/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
