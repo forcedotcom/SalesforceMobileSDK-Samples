@@ -18,7 +18,6 @@
 		7DD9537314771D0F0006BF23 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DD9537114771D0F0006BF23 /* InfoPlist.strings */; };
 		7DD9537514771D0F0006BF23 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9537414771D0F0006BF23 /* main.m */; };
 		7DD9537714771D0F0006BF23 /* CloudTunesNative-Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 7DD9537614771D0F0006BF23 /* CloudTunesNative-Prefix.pch */; };
-		7DD953FE14771D110006BF23 /* libSalesforceOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD953FD14771D110006BF23 /* libSalesforceOAuth.a */; };
 		7DD9540514771D120006BF23 /* libSalesforceSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD9540414771D120006BF23 /* libSalesforceSDK.a */; };
 		7DD9541314771D120006BF23 /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD9541214771D120006BF23 /* libsbjson-ios.a */; };
 		7DD9541714771D120006BF23 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD9541614771D120006BF23 /* icon-72.png */; };
@@ -56,9 +55,6 @@
 		7DD9537214771D0F0006BF23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DD9537414771D0F0006BF23 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7DD9537614771D0F0006BF23 /* CloudTunesNative-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CloudTunesNative-Prefix.pch"; sourceTree = "<group>"; };
-		7DD953FB14771D110006BF23 /* SFOAuthCoordinator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SFOAuthCoordinator.h; path = dependencies/SalesforceOAuth/include/SalesforceOAuth/SFOAuthCoordinator.h; sourceTree = "<group>"; };
-		7DD953FC14771D110006BF23 /* SFOAuthCredentials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SFOAuthCredentials.h; path = dependencies/SalesforceOAuth/include/SalesforceOAuth/SFOAuthCredentials.h; sourceTree = "<group>"; };
-		7DD953FD14771D110006BF23 /* libSalesforceOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSalesforceOAuth.a; path = dependencies/SalesforceOAuth/libSalesforceOAuth.a; sourceTree = "<group>"; };
 		7DD9540214771D120006BF23 /* SFRestAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SFRestAPI.h; path = dependencies/SalesforceSDK/include/SalesforceSDK/SFRestAPI.h; sourceTree = "<group>"; };
 		7DD9540314771D120006BF23 /* SFRestRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SFRestRequest.h; path = dependencies/SalesforceSDK/include/SalesforceSDK/SFRestRequest.h; sourceTree = "<group>"; };
 		7DD9540414771D120006BF23 /* libSalesforceSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSalesforceSDK.a; path = dependencies/SalesforceSDK/libSalesforceSDK.a; sourceTree = "<group>"; };
@@ -191,7 +187,6 @@
 				7DD9536914771D0F0006BF23 /* CoreGraphics.framework in Frameworks */,
 				7DD9536B14771D0F0006BF23 /* CFNetwork.framework in Frameworks */,
 				7DD9536D14771D0F0006BF23 /* MobileCoreServices.framework in Frameworks */,
-				7DD953FE14771D110006BF23 /* libSalesforceOAuth.a in Frameworks */,
 				7DD9540514771D120006BF23 /* libSalesforceSDK.a in Frameworks */,
 				7DD9541314771D120006BF23 /* libsbjson-ios.a in Frameworks */,
 				7DD9543A14771D120006BF23 /* libxml2.dylib in Frameworks */,
@@ -264,37 +259,10 @@
 			children = (
 				7DD9543914771D120006BF23 /* libxml2.dylib */,
 				82DD453214F8BA6C0093B2DF /* RestKit */,
-				7DD953F814771D110006BF23 /* SalesforceOAuth */,
 				7DD953FF14771D120006BF23 /* SalesforceSDK */,
 				7DD9540614771D120006BF23 /* SBJson */,
 			);
 			name = dependencies;
-			sourceTree = "<group>";
-		};
-		7DD953F814771D110006BF23 /* SalesforceOAuth */ = {
-			isa = PBXGroup;
-			children = (
-				7DD953FD14771D110006BF23 /* libSalesforceOAuth.a */,
-				7DD953F914771D110006BF23 /* include */,
-			);
-			name = SalesforceOAuth;
-			sourceTree = "<group>";
-		};
-		7DD953F914771D110006BF23 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				7DD953FA14771D110006BF23 /* SalesforceOAuth */,
-			);
-			name = include;
-			sourceTree = "<group>";
-		};
-		7DD953FA14771D110006BF23 /* SalesforceOAuth */ = {
-			isa = PBXGroup;
-			children = (
-				7DD953FB14771D110006BF23 /* SFOAuthCoordinator.h */,
-				7DD953FC14771D110006BF23 /* SFOAuthCredentials.h */,
-			);
-			name = SalesforceOAuth;
 			sourceTree = "<group>";
 		};
 		7DD953FF14771D120006BF23 /* SalesforceSDK */ = {
