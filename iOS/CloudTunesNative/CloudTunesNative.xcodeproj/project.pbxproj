@@ -39,6 +39,7 @@
 		7DD9544614771D5A0006BF23 /* TrackDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9544214771D5A0006BF23 /* TrackDetailsViewController.m */; };
 		7DD9544714771D5A0006BF23 /* TrackDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD9544314771D5A0006BF23 /* TrackDetailsViewController.xib */; };
 		82DD458614F8BA6C0093B2DF /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82DD458514F8BA6C0093B2DF /* libRestKit.a */; };
+		82DD458D14F8BB730093B2DF /* libSalesforceOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82DD458C14F8BB730093B2DF /* libSalesforceOAuth.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -172,6 +173,9 @@
 		82DD458314F8BA6C0093B2DF /* SOCKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOCKit.h; sourceTree = "<group>"; };
 		82DD458414F8BA6C0093B2DF /* Support.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Support.h; sourceTree = "<group>"; };
 		82DD458514F8BA6C0093B2DF /* libRestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libRestKit.a; sourceTree = "<group>"; };
+		82DD458A14F8BB730093B2DF /* SFOAuthCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOAuthCoordinator.h; sourceTree = "<group>"; };
+		82DD458B14F8BB730093B2DF /* SFOAuthCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOAuthCredentials.h; sourceTree = "<group>"; };
+		82DD458C14F8BB730093B2DF /* libSalesforceOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSalesforceOAuth.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +195,7 @@
 				7DD9541314771D120006BF23 /* libsbjson-ios.a in Frameworks */,
 				7DD9543A14771D120006BF23 /* libxml2.dylib in Frameworks */,
 				82DD458614F8BA6C0093B2DF /* libRestKit.a in Frameworks */,
+				82DD458D14F8BB730093B2DF /* libSalesforceOAuth.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +264,7 @@
 			children = (
 				7DD9543914771D120006BF23 /* libxml2.dylib */,
 				82DD453214F8BA6C0093B2DF /* RestKit */,
+				82DD458714F8BB730093B2DF /* SalesforceOAuth */,
 				7DD953FF14771D120006BF23 /* SalesforceSDK */,
 				7DD9540614771D120006BF23 /* SBJson */,
 			);
@@ -484,6 +490,33 @@
 				82DD458414F8BA6C0093B2DF /* Support.h */,
 			);
 			path = RestKit;
+			sourceTree = "<group>";
+		};
+		82DD458714F8BB730093B2DF /* SalesforceOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				82DD458814F8BB730093B2DF /* include */,
+				82DD458C14F8BB730093B2DF /* libSalesforceOAuth.a */,
+			);
+			name = SalesforceOAuth;
+			path = dependencies/SalesforceOAuth;
+			sourceTree = "<group>";
+		};
+		82DD458814F8BB730093B2DF /* include */ = {
+			isa = PBXGroup;
+			children = (
+				82DD458914F8BB730093B2DF /* SalesforceOAuth */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		82DD458914F8BB730093B2DF /* SalesforceOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				82DD458A14F8BB730093B2DF /* SFOAuthCoordinator.h */,
+				82DD458B14F8BB730093B2DF /* SFOAuthCredentials.h */,
+			);
+			path = SalesforceOAuth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
