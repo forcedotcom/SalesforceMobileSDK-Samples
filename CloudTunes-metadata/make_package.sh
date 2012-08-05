@@ -12,5 +12,7 @@ cwd=$( dirname "${BASH_SOURCE[0]}" )
 
 cd $cwd
 echo "Archiving $archive_dir to $archive_name"
-ditto -k -c --norsrc $archive_dir $archive_name
+rm -f $archive_name
+cd $archive_dir
+zip -r ../$archive_name .
 
