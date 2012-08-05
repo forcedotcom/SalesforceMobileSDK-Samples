@@ -1,0 +1,62 @@
+<apex:page showHeader="false" docType="html-5.0" standardStylesheets="false" cache="true" controller="CloudtunesController" >
+<html>
+<head>
+<title>Cloudtunes</title>
+
+<link rel="stylesheet" href="{!URLFOR($Resource.cloudtunes_jQuery, 'jquery.mobile-1.0.1.min.css')}" />
+<apex:includeScript value="{!URLFOR($Resource.cloudtunes_jQuery, 'jquery.min.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.cloudtunes_jQuery, 'jquery.mobile-1.0.1.min.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.cloudtunes)}"/>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+</head>
+
+<body>
+    
+    <div data-role="page" data-theme="b" id="mainpage">
+            
+        <div data-role="header">
+            <a href='#mainpage' id="logout" class='ui-btn-left' data-icon='home' >Home</a>
+            <h1>Albums</h1>
+        </div>
+        <div data-role="content">
+            <ul id="albumlist" data-inset="true" data-role="listview" 
+                data-theme="c" data-dividertheme="b">
+            </ul>
+        </div>
+    </div>
+	<div data-role="page" data-theme="b" id="detailpage">
+	    <div data-role="header">
+	        <a href='#mainpage' id="backAlbums" class='ui-btn-left' data-icon='arrow-l' >Albums</a>
+	        <h1>Album</h1>
+	    </div>
+	    <div data-role="content">
+	        <h1 id="AlbumName"></h1>
+	        <table>
+	            <tr><td>Price:</td><td id="AlbumPrice"></td></tr>
+	        </table>
+	        <input type="hidden" id="AlbumId" />
+	        <ol id="tracklist" data-inset="true" data-role="listview" 
+	            data-theme="c" data-dividertheme="c">
+	        </ol>
+	    </div>
+	</div>
+	<div data-role="page" data-theme="b" id="trackpage">
+	    <div data-role="header">
+	        <a href='#detailpage' id="backAlbum" class='ui-btn-left' data-icon='arrow-l' >Album</a>
+	        <h1>Track</h1>
+	    </div>
+	    <div data-role="content">
+	        <h1 id="TrackName"></h1>
+	        <table>
+	            <tr><td>Album:</td><td id="TrackAlbum"></td></tr>
+	            <tr><td>Price:</td><td id="TrackPrice" type="number"></td></tr>
+	        </table>
+	    </div>
+	</div>
+       
+</body>
+</html>
+
+</apex:page>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BaseObjectsFinal</fullName>
+    <description>This contains the Album and Track objects, and related triggers, unit tests, and validation rules.</description>
+    <types>
+        <members>TestDeleteRestrictAlbums</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>DeleteRestrictAlbums</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>Album__c.Description__c</members>
+        <members>Album__c.Price__c</members>
+        <members>Album__c.Released_On__c</members>
+        <members>Track__c.Album__c</members>
+        <members>Track__c.Price__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Album__c</members>
+        <members>Track__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Database%2Ecom Admin User</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>Track__c.No_Negative_Prices</members>
+        <name>ValidationRule</name>
+    </types>
+    <version>22.0</version>
+</Package>
