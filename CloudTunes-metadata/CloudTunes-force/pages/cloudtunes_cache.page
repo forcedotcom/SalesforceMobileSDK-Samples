@@ -1,0 +1,33 @@
+<apex:page showHeader="false" standardStylesheets="false" contentType="text/cache-manifest" cache="false">CACHE MANIFEST
+
+NETWORK:
+*
+
+CACHE:
+
+#js
+{!URLFOR($Resource.cloudtunes_jQuery, 'jquery.min.js')}
+{!URLFOR($Resource.cloudtunes_jQuery, 'jquery.mobile-1.0.1.min.js')}
+{!URLFOR($Resource.cloudtunes_smartstore)}
+{!URLFOR($Resource.Phonegap, 'phonegap-1.2.0-android.js')}
+{!URLFOR($Resource.Phonegap, 'phonegap-1.2.0-ios.js')}
+{!URLFOR($Resource.SFSmartStorePlugin)}
+{!URLFOR($Resource.cloudtunes_offline)}
+{!URLFOR($Resource.SFHybridAppJs)}
+
+#css
+{!URLFOR($Resource.cloudtunes_jQuery, 'jquery.mobile-1.0.1.min.css')}
+{!URLFOR($Resource.SFHybridAppCss)}
+
+#images
+{!URLFOR($Resource.cloudtunes_jQuery, 'images/ajax-loader.png')}
+{!URLFOR($Resource.cloudtunes_jQuery, 'images/icons-18-black.png')}
+{!URLFOR($Resource.cloudtunes_jQuery, 'images/icons-18-white.png')}
+{!URLFOR($Resource.cloudtunes_jQuery, 'images/icons-36-black.png')}
+{!URLFOR($Resource.cloudtunes_jQuery, 'images/icons-36-white.png')}
+
+
+#sessionid to force reload cache everytime the app is online:{!GETSESSIONID()}
+#This is done as a work around to a limitation of JS Remoting that causes remoting actions to fail on subsequent app login.
+
+</apex:page>
