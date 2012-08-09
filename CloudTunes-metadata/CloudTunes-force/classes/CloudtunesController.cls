@@ -7,9 +7,9 @@ global with sharing class CloudtunesController {
             get {
                 String userAgent = ApexPages.currentPage().getHeaders().get('User-Agent');
                 if (userAgent.contains('android'))
-                    return 'cordova-1.8.1-android.js';
+                    return 'cordova-android.js';
                 else
-                    return 'cordova-1.8.1-ios.js';
+                    return 'cordova-ios.js';
                     
                 // iOS-specific checks that you could make.  Above, we assume it's iOS if it's not Android.
                 //if (userAgent.contains('iPhone')
@@ -17,7 +17,7 @@ global with sharing class CloudtunesController {
                 //    || userAgent.contains('iPad')
                 //    || userAgent.contains('i386')
                 //    || userAgent.contains('x86_64'))
-                //    return 'cordova-1.8.1-ios.js';
+                //    return 'cordova-ios.js';
             }
     }
 

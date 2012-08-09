@@ -9,8 +9,8 @@ CACHE:
 {!URLFOR($Resource.cloudtunes_jQuery, 'jquery.min.js')}
 {!URLFOR($Resource.cloudtunes_jQuery, 'jquery.mobile-1.0.1.min.js')}
 {!URLFOR($Resource.cloudtunes_smartstore)}
-{!URLFOR($Resource.Cordova, 'cordova-1.8.1-android.js')}
-{!URLFOR($Resource.Cordova, 'cordova-1.8.1-ios.js')}
+{!URLFOR($Resource.Cordova, 'cordova-android.js')}
+{!URLFOR($Resource.Cordova, 'cordova-ios.js')}
 {!URLFOR($Resource.SFSmartStorePlugin)}
 {!URLFOR($Resource.cloudtunes_offline)}
 {!URLFOR($Resource.SFHybridAppJs)}
