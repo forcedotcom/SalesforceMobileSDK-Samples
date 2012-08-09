@@ -3,13 +3,13 @@
 **/
 global with sharing class CloudtunesController {
 
-    public String phoneGapUrl {
+    public String cordovaUrl {
             get {
                 String userAgent = ApexPages.currentPage().getHeaders().get('User-Agent');
                 if (userAgent.contains('android'))
-                    return 'phonegap-1.2.0-android.js';
+                    return 'cordova-1.8.1-android.js';
                 else
-                    return 'phonegap-1.2.0-ios.js';
+                    return 'cordova-1.8.1-ios.js';
                     
                 // iOS-specific checks that you could make.  Above, we assume it's iOS if it's not Android.
                 //if (userAgent.contains('iPhone')
@@ -17,7 +17,7 @@ global with sharing class CloudtunesController {
                 //    || userAgent.contains('iPad')
                 //    || userAgent.contains('i386')
                 //    || userAgent.contains('x86_64'))
-                //    return 'phonegap-1.2.0-ios.js';
+                //    return 'cordova-1.8.1-ios.js';
             }
     }
 
