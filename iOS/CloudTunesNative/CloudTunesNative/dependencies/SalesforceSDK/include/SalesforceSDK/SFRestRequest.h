@@ -38,6 +38,12 @@ typedef enum SFRestMethod {
 } SFRestMethod;
 
 
+/**
+ The default REST endpoint used by requests.
+ */
+extern NSString * const kSFDefaultRestEndpoint;
+
+
 //forward declaration
 @class SFRestRequest;
 
@@ -46,8 +52,11 @@ typedef enum SFRestMethod {
  */
 @protocol SFRestDelegate <NSObject>
 @optional
+
 /**
  * Sent when a request has finished loading.
+ * @param request The request that was loaded.
+ * @param jsonResponse The JSON data in the response.
  */
 - (void)request:(SFRestRequest *)request didLoadResponse:(id)jsonResponse;
 
@@ -55,17 +64,21 @@ typedef enum SFRestMethod {
  * Sent when a request has failed due to an error.
  * This includes HTTP network errors, as well as Salesforce errors
  * (for example, passing an invalid SOQL string when doing a query).
+ * @param request The attempted request.
+ * @param error The error associated with the failed request.
  */
 - (void)request:(SFRestRequest *)request didFailLoadWithError:(NSError*)error;
 
 /**
  * Sent to the delegate when a request was cancelled.
+ * @param request The canceled request.
  */
 - (void)requestDidCancelLoad:(SFRestRequest *)request;
 
 /**
  * Sent to the delegate when a request has timed out. This is sent when a
  * backgrounded request expired before completion.
+ * @param request The request that timed out.
  */
 - (void)requestDidTimeout:(SFRestRequest *)request;
 
@@ -77,6 +90,7 @@ typedef enum SFRestMethod {
  * @see SFRestAPI
  */
 @interface SFRestRequest : NSObject {
+    NSString *_endpoint;
     SFRestMethod _method;
     NSString *_path;
     NSDictionary *_queryParams;
@@ -85,8 +99,7 @@ typedef enum SFRestMethod {
 
 
 /**
- * The HTTP method of the request
- * @see SFRestMethod
+ * The HTTP method of the request.  See SFRestMethod.
  */
 @property (nonatomic, assign) SFRestMethod method;
 
@@ -111,16 +124,20 @@ typedef enum SFRestMethod {
 @property (nonatomic, assign) id<SFRestDelegate> delegate;
 
 
+/**
+ * Typically kSFDefaultRestEndpoint but you may use eg custom Apex endpoints
+ */
+@property (nonatomic, strong) NSString *endpoint;
+
 ///---------------------------------------------------------------------------------------
 /// @name Initialization
 ///---------------------------------------------------------------------------------------
 
 /**
- * Creates an `SFRestRequest` object.
+ * Creates an `SFRestRequest` object. See SFRestMethod.
  * @param method the HTTP method
  * @param path the request path
  * @param queryParams the parameters of the request (could be nil)
- * @see SFRestMethod
  */
 + (id)requestWithMethod:(SFRestMethod)method path:(NSString *)path queryParams:(NSDictionary *)queryParams;
 
