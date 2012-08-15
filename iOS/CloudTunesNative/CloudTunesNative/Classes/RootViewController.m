@@ -40,7 +40,7 @@
         // Custom initialization
         SFRestRequest *request;
         request = [[SFRestAPI sharedInstance] requestForQuery:@"SELECT Id, Name FROM Album__c"];
-
+        
         [[SFRestAPI sharedInstance] send:request delegate:self];
     }
     return self;
@@ -55,7 +55,7 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-
+    
     // Release any cached data, images, etc that aren't in use.
 }
 
@@ -64,10 +64,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -101,26 +101,26 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-        return YES;
+    return YES;
 }
 
 #pragma mark - SFRestAPIDelegate
 
 - (void)request:(SFRestRequest *)request didLoadResponse:(id)response {
-
-
+    
+    
     self.allAlbums = [response objectForKey:@"records"];
     [self.tableView reloadData];
 }
 
 
 - (void)request:(SFRestRequest*)request didFailLoadWithError:(NSError*)error {
-
+    
     //here is a sample of handling errors neatly.
     NSLog(@"RootViewController:didFailWithError: %@", error);
-
+    
     // show alert
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Database.com Error" 
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Database.com Error"
                                                     message:[NSString stringWithFormat:@"Problem retrieving data %@", error]
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
@@ -130,7 +130,7 @@
 }
 
 - (void)requestDidCancelLoad:(SFRestRequest *)request {
-    //use the sample above to write your specific handling here  
+    //use the sample above to write your specific handling here
 }
 
 - (void)requestDidTimeout:(SFRestRequest *)request {
@@ -153,22 +153,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-
+    
     // Configure the cell...
     NSDictionary *obj = [allAlbums objectAtIndex:indexPath.row];
     cell.textLabel.text =  [obj objectForKey:@"Name"];
-
+    
     UIImage *image = [UIImage imageNamed:@"tracks.png"];
     cell.imageView.image = image;
-
+    
     //add the arrow to the right hand side
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+    
     return cell;
 }
 
@@ -187,52 +187,52 @@
 #pragma mark - Mobile SDK additional samples
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     NSDictionary *obj = [allAlbums objectAtIndex:indexPath.row];
     NSString *aid = [obj objectForKey:@"Id"];
     NSString *objectType = @"Album__c";
     SFRestRequest *request;
-
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-
+        
         //delete from the cloud
         request = [[SFRestAPI sharedInstance] requestForDeleteWithObjectType:objectType objectId:aid];
-
-
+        
+        
         SFRestRequest *request = [SFRestRequest requestWithMethod:SFRestMethodDELETE path:aid queryParams:nil];
-
+        
         //in our sample app, once a delete is done, we are done, thus no delegate callback
         [[SFRestAPI sharedInstance] send:request delegate:nil];
-
+        
         //delete the row from the array
         [allAlbums removeObject:obj];
-
+        
         // Delete the row from the table
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-
+    }
+    
 }
 
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 #pragma mark - UITableViewDelegate
 
@@ -241,17 +241,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     NSDictionary *obj = [allAlbums objectAtIndex:indexPath.row];
-    TrackDetailsViewController *trackViewController = [[TrackDetailsViewController alloc] 
-                                            initWithNibName:@"TrackDetailsViewController" bundle:nil 
-                                                albumId:[obj objectForKey:@"Id"]
-                                                albumTitle:[obj objectForKey:@"Name"]];
-
+    TrackDetailsViewController *trackViewController = [[TrackDetailsViewController alloc]
+                                                       initWithNibName:@"TrackDetailsViewController" bundle:nil
+                                                       albumId:[obj objectForKey:@"Id"]
+                                                       albumTitle:[obj objectForKey:@"Name"]];
+    
     [self.navigationController pushViewController:trackViewController animated:YES];
     [trackViewController release];
-
+    
 }
 
 @end
-

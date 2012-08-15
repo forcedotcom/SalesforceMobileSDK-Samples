@@ -54,17 +54,20 @@ static NSString *const OAuthRedirectURI = @"testsfdc:///mobilesdk/detect/oauth/d
 
 #pragma mark - App lifecycle
 
+
 //NOTE be sure to call all super methods you override.
+
 
 - (UIViewController*)newRootViewController {
     
     RootViewController *rootVC = [[RootViewController alloc] init];
-
+    
     //For this application we rely upon the behavior of a parent UINavigationController
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:rootVC];
     
     [rootVC release];
     return navController;
 }
+
 
 @end
