@@ -150,7 +150,11 @@ function onSuccessQuerySoup(cursor, success) {
     
     // If there are no entries initially, just return to the success callback.
     if (!cursor || cursor.totalPages == 0) {
-        success(entries);
+        if (cursor) {
+            navigator.smartstore.closeCursor(cursor, onCursorIterationFinished);
+        } else {
+            onCursorIterationFinished();
+        }
     } else {
         addEntriesFromCursor(cursor);
     }
