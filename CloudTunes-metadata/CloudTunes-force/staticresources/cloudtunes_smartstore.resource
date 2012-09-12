@@ -16,15 +16,20 @@ function getUrlParamByName(name) {
 }
 
 function hasSmartstore() {
-    if (PhoneGap.hasResource("smartstore") && navigator.smartstore) {
-        console.log("SmartStore plugin found and loaded");
-        return true;
+    var smartStoreDefined = false;
+    if (cordova && cordova.require) {
+        var smartStore = cordova.require("salesforce/plugin/smartstore");
+        if ((typeof smartStore !== "undefined") && (smartStore !== null)) {
+            console.log("SmartStore plugin found and loaded");
+            smartStoreDefined = true;
+        }
     }
-    return false;
+    
+    return smartStoreDefined;
 }
 
 function resetOfflineStore() {
-    if (SFHybridApp.deviceIsOnline()) {
+    if (cordova && cordova.require && cordova.require("salesforce/util/bootstrap").deviceIsOnline()) {
         clearOfflineSoups(regOfflineSoups);
     }
 }
@@ -32,7 +37,7 @@ function resetOfflineStore() {
 function regOfflineSoups() {
       
     if (hasSmartstore()) {
-    
+        var smartStore = cordova.require("salesforce/plugin/smartstore");
         console.log("Registering soups");
         
         //Registering soup 1 for storing albums
@@ -41,7 +46,7 @@ function regOfflineSoups() {
             {path:"Id",type:"string"}
         ];
         
-        navigator.smartstore.registerSoup(ALBUMS_SOUP_NAME,
+        smartStore.registerSoup(ALBUMS_SOUP_NAME,
                                         indexesAlbums,                                  
                                         onSuccessRegSoup, 
                                         onErrorRegSoup);
@@ -52,7 +57,7 @@ function regOfflineSoups() {
             {path:"Id",type:"string"},
             {path:"Album__c",type:"string"}
         ];
-        navigator.smartstore.registerSoup(TRACKS_SOUP_NAME,
+        smartStore.registerSoup(TRACKS_SOUP_NAME,
                                         indexesTracks,                                  
                                         onSuccessRegSoup, 
                                         onErrorRegSoup);
@@ -62,38 +67,42 @@ function regOfflineSoups() {
 function clearOfflineSoups(cb) {
       
     if (hasSmartstore()) {
-    
-      var cbCount = 0;
-      var success = function() {
-        console.log('cleared soup');
-        if(++cbCount == 2 && typeof cb == 'function') cb();
-      }
-      navigator.smartstore.removeSoup(ALBUMS_SOUP_NAME, success, onErrorRemoveSoup);
-      navigator.smartstore.removeSoup(TRACKS_SOUP_NAME, success, onErrorRemoveSoup);
+        var smartStore = cordova.require("salesforce/plugin/smartstore");
+        var cbCount = 0;
+        var success = function() {
+            console.log('cleared soup');
+            if(++cbCount == 2 && typeof cb == 'function') cb();
+        }
+        smartStore.removeSoup(ALBUMS_SOUP_NAME, success, onErrorRemoveSoup);
+        smartStore.removeSoup(TRACKS_SOUP_NAME, success, onErrorRemoveSoup);
     }
 }
 
 function addOfflineAlbums(entries, success, error) {
-    if (hasSmartstore())
-        navigator.smartstore.upsertSoupEntries(ALBUMS_SOUP_NAME,entries,
+    if (hasSmartstore()) {
+        var smartStore = cordova.require("salesforce/plugin/smartstore");
+        smartStore.upsertSoupEntries(ALBUMS_SOUP_NAME,entries,
                                            success,
                                            error);
-                
+    }
 }
 
 
 function addOfflineTracks(entries, success, error) {
-    if (hasSmartstore())
-        navigator.smartstore.upsertSoupEntries(TRACKS_SOUP_NAME,entries,
+    if (hasSmartstore()) {
+        var smartStore = cordova.require("salesforce/plugin/smartstore");
+        smartStore.upsertSoupEntries(TRACKS_SOUP_NAME,entries,
                                            success,
                                            error);
+    }
 }
 
 function fetchOfflineAlbums(success, error) {
     if (hasSmartstore()) {
-        var querySpec = navigator.smartstore.buildAllQuerySpec("Name", null, 20);
+        var smartStore = cordova.require("salesforce/plugin/smartstore");
+        var querySpec = smartStore.buildAllQuerySpec("Name", null, 20);
         
-        navigator.smartstore.querySoup(ALBUMS_SOUP_NAME,querySpec,
+        smartStore.querySoup(ALBUMS_SOUP_NAME,querySpec,
                                            function(cursor) { onSuccessQuerySoup(cursor, success); },
                                            error);
     }
@@ -101,7 +110,8 @@ function fetchOfflineAlbums(success, error) {
 
 function fetchOfflineTracks(albumId, success, error) {
     if (hasSmartstore()) {
-        var querySpec = navigator.smartstore.buildExactQuerySpec("Album__c", albumId, 20);
+        var smartStore = cordova.require("salesforce/plugin/smartstore");
+        var querySpec = smartStore.buildExactQuerySpec("Album__c", albumId, 20);
         
         var querySuccess = function(cursor) {
             var curPageEntries = cursor.currentPageOrderedEntries;
@@ -113,7 +123,7 @@ function fetchOfflineTracks(albumId, success, error) {
             success(entries);
         }
                                     
-        navigator.smartstore.querySoup(TRACKS_SOUP_NAME,querySpec,
+        smartStore.querySoup(TRACKS_SOUP_NAME,querySpec,
                                            function(cursor) { onSuccessQuerySoup(cursor, success); },
                                            error);
     }
@@ -140,10 +150,11 @@ function onSuccessQuerySoup(cursor, success) {
             $j.each(curPageEntries, function(i, entry) {
                 entries.push(entry);
             });
+            var smartStore = cordova.require("salesforce/plugin/smartstore");
             if (cursor.currentPageIndex == cursor.totalPages - 1) {  // Last page, finish up.
-                navigator.smartstore.closeCursor(cursor, onCursorIterationFinished);
+                smartStore.closeCursor(cursor, onCursorIterationFinished);
             } else {
-                navigator.smartstore.moveCursorToNextPage(cursor, addEntriesFromCursor);
+                smartStore.moveCursorToNextPage(cursor, addEntriesFromCursor);
             }
         }
     }
@@ -151,7 +162,7 @@ function onSuccessQuerySoup(cursor, success) {
     // If there are no entries initially, just return to the success callback.
     if (!cursor || cursor.totalPages == 0) {
         if (cursor) {
-            navigator.smartstore.closeCursor(cursor, onCursorIterationFinished);
+            cordova.require("salesforce/plugin/smartstore").closeCursor(cursor, onCursorIterationFinished);
         } else {
             onCursorIterationFinished();
         }

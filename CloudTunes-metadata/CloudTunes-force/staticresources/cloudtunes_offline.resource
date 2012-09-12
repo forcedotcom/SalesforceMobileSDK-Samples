@@ -10,8 +10,17 @@ $j(function() {
 	else $j(document).ready(init);
 });
 
+function getSFHybridApp() {
+    var sfHybridApp;
+    if (cordova && cordova.require)
+        sfHybridApp = cordova.require("salesforce/util/bootstrap");
+        
+    return sfHybridApp;
+}
+
 function checkCacheAndPrepareSession() {
-    if (SFHybridApp.deviceIsOnline() && window.applicationCache) {
+    var sfHybridApp = getSFHybridApp();
+    if (sfHybridApp && sfHybridApp.deviceIsOnline() && window.applicationCache) {
         switch (window.applicationCache.status) {
             case window.applicationCache.CHECKING:
             case window.applicationCache.DOWNLOADING:
@@ -45,7 +54,8 @@ function init() {
 
 function getAlbums(callback) {
     $j('#albumlist').empty();
-    if (SFHybridApp.deviceIsOnline()) {
+    var sfHybridApp = getSFHybridApp();
+    if (sfHybridApp && sfHybridApp.deviceIsOnline()) {
         CloudtunesController.queryAlbums(function(records, e) { 
             showAlbums(records, callback); 
 //			addOfflineAlbums(records);
@@ -97,7 +107,8 @@ function showAlbums(records, callback) {
 
 function getTracks(albumid, callback) {
     $j('#tracklist').empty();
-    if (SFHybridApp.deviceIsOnline()) {
+    var sfHybridApp = getSFHybridApp();
+    if (sfHybridApp && sfHybridApp.deviceIsOnline()) {
         CloudtunesController.queryTracks(albumid,
             function(records, e) { 
                 showTracks(records,callback);
