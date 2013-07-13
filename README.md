@@ -22,10 +22,8 @@ The native iOS sample apps have a lot of functionality you can examine and work 
 All of the Android sample applications live under the Android SDK repo, and are most easily accessed by importing the root directory of the repo in your Eclipse workspace.
 
 - RestExplorer is a sample app that demonstrates how to use the OAuth and REST API functions of the SalesforceSDK. It’s also useful to investigate the various REST API actions from a Honeycomb tablet.
-
     1. To run the application from your Eclipse workspace, right-click the RestExplorer project and choose Run As > Android Application.
     2. To run the tests, right-click the RestExplorerTest project and choose Run As > Android JUnit Test.
-
 - NativeSqlAggregator is a sample app that demonstrates SQL aggregation with SmartSQL. As such, it also demonstrates a native implementation of SmartStore. To run the application from your Eclipse workspace, right-click the NativeSqlAggregator project and choose Run As > Android Application.
 
 ## Android Hybrid Sample Applications
