@@ -44,7 +44,7 @@ Inside the ./hybrid folder, you can find sample projects and related test applic
 
 As mentioned above, you can access all of the iOS sample applications from the `SalesforceMobileSDK.xcworkspace` Xcode workspace at the root of the iOS repo.
 
-The sample applications contained under the hybrid/SampleApps folder are designed around the PhoneGap SDK.  PhoneGap is also known as Cordova. Salesforce Mobile SDK v. 1.4 and later include the Cordova libraries, so no separate installation is required. You can find documentation for the Cordova SDK in the Getting Started Guide.
+The sample applications contained under the hybrid/SampleApps folder are designed around the PhoneGap SDK.  PhoneGap is also known as Cordova. Salesforce Mobile SDK v. 1.4 and later include the Cordova libraries, so no separate installation is required. You can find documentation for the Cordova SDK in their [Getting Started Guide](http://docs.phonegap.com/en/2.3.0/guide_getting-started_ios_index.md.html#Getting%20Started%20with%20iOS).
 
 Inside the hybrid/SampleApps folder, you can find sample projects:
 
