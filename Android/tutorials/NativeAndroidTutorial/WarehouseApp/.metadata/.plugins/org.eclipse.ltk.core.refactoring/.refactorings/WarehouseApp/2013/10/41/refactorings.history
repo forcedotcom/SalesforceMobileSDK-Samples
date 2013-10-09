@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename method &apos;com.samples.warehouse.MainActivity.onFetchAccountsClick(...)&apos; to &apos;onFetchMerchandiseClick&apos;&#x0A;- Original project: &apos;WarehouseApp&apos;&#x0A;- Original element: &apos;com.samples.warehouse.MainActivity.onFetchAccountsClick(...)&apos;&#x0A;- Renamed element: &apos;com.samples.warehouse.MainActivity.onFetchMerchandiseClick(...)&apos;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;onFetchAccountsClick&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;com.samples.warehouse{MainActivity.java[MainActivity~onFetchAccountsClick~QView;" name="onFetchMerchandiseClick" references="true" stamp="1381353641282" version="1.0"/>
-</session>

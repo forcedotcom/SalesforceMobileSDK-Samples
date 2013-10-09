@@ -49,6 +49,12 @@
 		<activity android:name="com.salesforce.androidsdk.ui.ServerPickerActivity"
 		    android:excludeFromRecents="true"
 		    android:theme="@android:style/Theme.NoTitleBar" />
+		
+		<!-- Merchandise detail screen -->
+		<activity android:name="com.samples.warehouse.DetailActivity"
+        	android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+		</activity>
+		    
 	</application>
 
 	<uses-permission android:name="android.permission.INTERNET" />

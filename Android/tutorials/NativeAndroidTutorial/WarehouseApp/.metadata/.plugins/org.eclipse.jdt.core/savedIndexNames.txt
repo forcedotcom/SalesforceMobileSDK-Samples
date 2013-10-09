@@ -1,9 +1,0 @@
-INDEX VERSION 1.126+/Users/wmathurin/Development/github/wmathurin/SalesforceMobileSDK-Samples/Android/tutorials/NativeAndroidTutorial/WarehouseApp/.metadata/.plugins/org.eclipse.jdt.core
-4251336887.index
-1185593007.index
-1065146900.index
-2208919137.index
-231295820.index
-1524047976.index
-594077503.index
-1738885858.index

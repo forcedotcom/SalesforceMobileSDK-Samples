@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, salesforce.com, inc.
+ * Copyright (c) 2013, salesforce.com, inc.
  * All rights reserved.
  * Redistribution and use of this software in source and binary forms, with or
  * without modification, are permitted provided that the following conditions
@@ -26,17 +26,12 @@
  */
 package com.samples.warehouse;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-
-import org.json.JSONArray;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.EditText;
 
 import com.salesforce.androidsdk.app.SalesforceSDKManager;
 import com.salesforce.androidsdk.rest.RestClient;
@@ -46,44 +41,39 @@ import com.salesforce.androidsdk.rest.RestResponse;
 import com.salesforce.androidsdk.ui.sfnative.SalesforceActivity;
 
 /**
- * Main activity
+ * Detail activity
  */
-public class MainActivity extends SalesforceActivity {
+public class DetailActivity extends SalesforceActivity {
 
-    private RestClient client;
-    private ArrayAdapter<String> listAdapter;
-	
+	private String merchandiseId;
+	private RestClient client;
+	private EditText nameField;
+	private EditText priceField;
+	private EditText quantityField;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		// Setup view
-		setContentView(R.layout.main);
+		setContentView(R.layout.detail);
+		nameField = (EditText) findViewById(R.id.name_field);
+		priceField = (EditText) findViewById(R.id.price_field);
+		quantityField = (EditText) findViewById(R.id.quantity_field);
+
+		// Populate fields with data from intent
+		Bundle extras = getIntent().getExtras();
+		merchandiseId = extras.getString("id");
+		nameField.setText(extras.getString("name"));
+		priceField.setText(extras.getDouble("price") + "");
+		quantityField.setText(extras.getInt("quantity") + "");
 	}
-	
-	@Override 
-	public void onResume() {
-		// Hide everything until we are logged in
-		findViewById(R.id.root).setVisibility(View.INVISIBLE);
-
-		// Create list adapter
-		listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, new ArrayList<String>());
-		((ListView) findViewById(R.id.contacts_list)).setAdapter(listAdapter);				
-
-		// Fetch merchandise
-		sendRequest("SELECT Name, Id, Quantity__c, Price__c FROM Merchandise__c LIMIT 10");
-		
-		super.onResume();
-	}		
 	
 	@Override
 	public void onResume(RestClient client) {
         // Keeping reference to rest client
         this.client = client; 
-
-		// Show everything
-		findViewById(R.id.root).setVisibility(View.VISIBLE);
-	}
+	}	
 
 	/**
 	 * Called when "Logout" button is clicked. 
@@ -93,43 +83,49 @@ public class MainActivity extends SalesforceActivity {
 	public void onLogoutClick(View v) {
 		SalesforceSDKManager.getInstance().logout(this);
 	}
-	
 
-	private void sendRequest(String soql)  {
-		
-		RestRequest restRequest = null;
+	/**
+	 * Called when "Update" button is clicked. 
+	 * 
+	 * @param v
+	 */
+	public void onUpdateClick(View v) {
+		Map<String, Object> fields = new HashMap<String, Object>();
+		fields.put("Name", nameField.getText().toString());
+		fields.put("Quantity__c", quantityField.getText().toString());
+		fields.put("Price__c", priceField.getText().toString());
+		saveData(merchandiseId, fields);
+	}
+	
+	/**
+	 * Helper method to save details back to server
+	 * @param id
+	 * @param fields
+	 */
+	private void saveData(String id, Map<String, Object> fields)  {
+		RestRequest restRequest;
 		try {
-			restRequest = RestRequest.getRequestForQuery(getString(R.string.api_version), soql);
-		} catch (UnsupportedEncodingException e) {
-			Log.e("MainActivity", "Failed to build request", e);
+			restRequest = RestRequest.getRequestForUpdate(getString(R.string.api_version), "Merchandise__c", id, fields);
+		} catch (Exception e) {
+			MainActivity.showError(this, e);
 			return;
 		}
-
+		
 		client.sendAsync(restRequest, new AsyncRequestCallback() {
 			@Override
 			public void onSuccess(RestRequest request, RestResponse result) {
 				try {
-					listAdapter.clear();
-					JSONArray records = result.asJSONObject().getJSONArray("records");
-					for (int i = 0; i < records.length(); i++) {
-						listAdapter.add(records.getJSONObject(i).getString("Name"));
-					}					
+					DetailActivity.this.finish();
 				} catch (Exception e) {
-					onError(e);
+					MainActivity.showError(DetailActivity.this, e);
 				}
 			}
 			
 			@Override
-			public void onError(Exception exception) {
-				showError(exception);
+			public void onError(Exception e) {
+				MainActivity.showError(DetailActivity.this, e);
 			}
 		});
-	}
+	}	
 	
-	private void showError(Exception e) {
-        Toast.makeText(MainActivity.this,
-                MainActivity.this.getString(SalesforceSDKManager.getInstance().getSalesforceR().stringGenericError(), e.toString()),
-                Toast.LENGTH_LONG).show();
-		
-	}
 }
