@@ -33,7 +33,7 @@ import com.salesforce.androidsdk.app.SalesforceSDKManager;
 /**
  * Application class for our application.
  */
-public class WarehouseAppApp extends Application {
+public class WarehouseApp extends Application {
 
 	@Override
 	public void onCreate() {
