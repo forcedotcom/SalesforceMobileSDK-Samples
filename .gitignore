@@ -10,3 +10,4 @@ local.properties
 proguard-project.txt
 project.xcworkspace
 xcuserdata
+.settings
