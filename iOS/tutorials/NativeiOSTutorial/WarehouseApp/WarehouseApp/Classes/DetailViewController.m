@@ -108,8 +108,10 @@
 #pragma mark - SFRestDelegate methods
 
 - (void)request:(SFRestRequest *)request didLoadResponse:(id)jsonResponse {
-    NSLog(@"1 record updated");
-    [self.navigationController popViewControllerAnimated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"1 record updated");
+        [self.navigationController popViewControllerAnimated:YES];
+    });
 }
 
 - (void)request:(SFRestRequest*)request didFailLoadWithError:(NSError*)error {
