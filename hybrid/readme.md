@@ -3,7 +3,7 @@
 - $template should be vfconnector, contactexplorer, smartstoreexplorer, accounteditor, usersearch, userandgroupsearch or fileexplorer
 
 <pre>
-cordova create $appname com.acme $appname
+cordova create $appname com.salesforce.$template $appname
 cd $appname
 cordova platform add android
 cordova plugin add org.apache.cordova.contacts

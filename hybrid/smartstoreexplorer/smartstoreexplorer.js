@@ -5,24 +5,23 @@
 
 var SAMPLE_SOUP_NAME = "myPeopleSoup";
 var lastSoupCursor = null;
-var sfSmartstore = cordova.require("com.salesforce.plugin.smartstore");
-
+var sfSmartstore = function() {return cordova.require("com.salesforce.plugin.smartstore");};
+var logToConsole = function() {return cordova.require("com.salesforce.util.logger").logToConsole;};
 
 function regLinkClickHandlers() {
-    var logToConsole = cordova.require("com.salesforce.util.logger").logToConsole;
-    logToConsole("regLinkClickHandlers");
+    logToConsole()("regLinkClickHandlers");
 
 
     
     $('#link_fetch_sfdc_contacts').click(function() {
-                                         logToConsole("link_fetch_sfdc_contacts clicked");
+                                         logToConsole()("link_fetch_sfdc_contacts clicked");
                                          forcetkClient.query("SELECT Name,Id FROM Contact", onSuccessSfdcContacts, onErrorSfdc); 
                                          });
     
 
     
     $('#link_reset').click(function() {
-                           logToConsole("link_reset clicked");
+                           logToConsole()("link_reset clicked");
                            $("#div_device_contact_list").html("");
                            $("#div_sfdc_contact_list").html("");
                            $("#div_sfdc_account_list").html("");
@@ -32,20 +31,20 @@ function regLinkClickHandlers() {
                   
          
     $('#link_logout').click(function() {
-             logToConsole("link_logout clicked");
+             logToConsole()("link_logout clicked");
              var sfOAuthPlugin = cordova.require("com.salesforce.plugin.oauth");
              sfOAuthPlugin.logout();
              });
     
     $('#link_reg_soup').click(function() {
-      logToConsole("link_reg_soup clicked");
+      logToConsole()("link_reg_soup clicked");
 
       var indexes = [
                      {path:"Name",type:"string"},
                      {path:"Id",type:"string"}
                      ];
         
-      sfSmartstore.registerSoup(SAMPLE_SOUP_NAME,
+      sfSmartstore().registerSoup(SAMPLE_SOUP_NAME,
                                         indexes,                                  
                                         onSuccessRegSoup, 
                                         onErrorRegSoup
@@ -56,21 +55,21 @@ function regLinkClickHandlers() {
                               
     
     $('#link_stuff_soup').click(function() {
-        logToConsole("link_stuff_soup clicked");
+        logToConsole()("link_stuff_soup clicked");
         runStuffSoup();
     });
                             
     
 
     $('#link_remove_soup').click(function() {
-        sfSmartstore.removeSoup(SAMPLE_SOUP_NAME,
+        sfSmartstore().removeSoup(SAMPLE_SOUP_NAME,
                                      onSuccessRemoveSoup, 
                                      onErrorRemoveSoup);
     });
     
     
     $('#link_soup_exists').click(function() {
-                                 sfSmartstore.soupExists(SAMPLE_SOUP_NAME,
+                                 sfSmartstore().soupExists(SAMPLE_SOUP_NAME,
                                                                  onSoupExistsDone,
                                                                  onSoupExistsDone);
                                  });
@@ -87,28 +86,27 @@ function regLinkClickHandlers() {
     
     
      $('#link_cursor_page_zero').click(function() {
-        logToConsole("link_cursor_page_zero clicked");
-        sfSmartstore.moveCursorToPageIndex(lastSoupCursor,0, onSuccessQuerySoup,onErrorQuerySoup);
+        logToConsole()("link_cursor_page_zero clicked");
+        sfSmartstore().moveCursorToPageIndex(lastSoupCursor,0, onSuccessQuerySoup,onErrorQuerySoup);
     });
      
      $('#link_cursor_page_prev').click(function() {
-        logToConsole("link_cursor_page_prev clicked");
-        sfSmartstore.moveCursorToPreviousPage(lastSoupCursor,onSuccessQuerySoup,onErrorQuerySoup);
+        logToConsole()("link_cursor_page_prev clicked");
+        sfSmartstore().moveCursorToPreviousPage(lastSoupCursor,onSuccessQuerySoup,onErrorQuerySoup);
     });
      
     
     $('#link_cursor_page_next').click(function() {
-        logToConsole("link_cursor_page_next clicked");
-        sfSmartstore.moveCursorToNextPage(lastSoupCursor,onSuccessQuerySoup,onErrorQuerySoup);
+        logToConsole()("link_cursor_page_next clicked");
+        sfSmartstore().moveCursorToNextPage(lastSoupCursor,onSuccessQuerySoup,onErrorQuerySoup);
     });
 }
 
 
 function addEntriesToTestSoup(entries,cb) {
-    var logToConsole = cordova.require("com.salesforce.util.logger").logToConsole;
-    sfSmartstore.upsertSoupEntries(SAMPLE_SOUP_NAME,entries,
+    sfSmartstore().upsertSoupEntries(SAMPLE_SOUP_NAME,entries,
                                            function(items) {
-                                               logToConsole("added entries: " + items.length);
+                                               logToConsole()("added entries: " + items.length);
                                                $("#div_soup_status_line").html("Soup upsert OK");
 
                                                if (typeof cb !== "undefined") {
@@ -116,7 +114,7 @@ function addEntriesToTestSoup(entries,cb) {
                                                }
                                            },
                                            function(err) {
-                                               logToConsole("onErrorUpsert: " + err);
+                                               logToConsole()("onErrorUpsert: " + err);
                                                $("#div_soup_status_line").html("Soup upsert ERROR");
                                                if (typeof cb !== "undefined") {
                                                 cb(null);
@@ -127,7 +125,7 @@ function addEntriesToTestSoup(entries,cb) {
 
 
 function addGeneratedEntriesToTestSoup(nEntries, cb) {
-	cordova.require("com.salesforce.util.logger").logToConsole("addGeneratedEntriesToTestSoup " + nEntries);
+	logToConsole()("addGeneratedEntriesToTestSoup " + nEntries);
     
 	var entries = [];
 	for (var i = 0; i < nEntries; i++) {
@@ -183,21 +181,21 @@ function runQuerySoup() {
     }
     
     
-    cordova.require("com.salesforce.util.logger").logToConsole("querySoup path: '"+ indexPath + "' begin: '" + beginKey + "' end: '" + endKey + "' [" + pageSizeVal + ']');
+    logToConsole()("querySoup path: '"+ indexPath + "' begin: '" + beginKey + "' end: '" + endKey + "' [" + pageSizeVal + ']');
     var querySpec;
 	if ("range" == queryType) {
-		querySpec = sfSmartstore.buildRangeQuerySpec(indexPath,beginKey,endKey,null,pageSizeVal);
+		querySpec = sfSmartstore().buildRangeQuerySpec(indexPath,beginKey,endKey,null,pageSizeVal);
 	} else if ("like" == queryType) {
-		querySpec = sfSmartstore.buildLikeQuerySpec(indexPath,beginKey,null,pageSizeVal);
+		querySpec = sfSmartstore().buildLikeQuerySpec(indexPath,beginKey,null,pageSizeVal);
 	} else if ("all" == queryType) {
-		querySpec = sfSmartstore.buildAllQuerySpec(indexPath, null, pageSizeVal) ;
+		querySpec = sfSmartstore().buildAllQuerySpec(indexPath, null, pageSizeVal) ;
 	}
 	else { //"exact"
-		querySpec = sfSmartstore.buildExactQuerySpec(indexPath,beginKey,null,pageSizeVal);
+		querySpec = sfSmartstore().buildExactQuerySpec(indexPath,beginKey,null,pageSizeVal);
 	}
 	
                                 
-    sfSmartstore.querySoup(SAMPLE_SOUP_NAME,querySpec,
+    sfSmartstore().querySoup(SAMPLE_SOUP_NAME,querySpec,
                                        onSuccessQuerySoup, 
                                        onErrorQuerySoup
                                                 );
@@ -209,10 +207,10 @@ function runRetrieveEntries() {
         inputStr = null;
     }
     
-    cordova.require("com.salesforce.util.logger").logToConsole("runRetrieveEntries: " + inputStr );
+    logToConsole()("runRetrieveEntries: " + inputStr );
     var entryIds = eval(inputStr);
     
-    sfSmartstore.retrieveSoupEntries(SAMPLE_SOUP_NAME,
+    sfSmartstore().retrieveSoupEntries(SAMPLE_SOUP_NAME,
                                              entryIds,
                                              onSuccessRetrieveEntries,
                                              onErrorRetrieveEntries
@@ -220,24 +218,24 @@ function runRetrieveEntries() {
 }
     
 function onSuccessRegSoup(param) {
-    cordova.require("com.salesforce.util.logger").logToConsole("onSuccessRegSoup: " + param);
+    logToConsole()("onSuccessRegSoup: " + param);
     $("#div_soup_status_line").html("Soup registered: " + SAMPLE_SOUP_NAME);
 }
 
 function onErrorRegSoup(param) {
-    cordova.require("com.salesforce.util.logger").logToConsole("onErrorRegSoup: " + param);
+    logToConsole()("onErrorRegSoup: " + param);
     $("#div_soup_status_line").html("registerSoup ERROR");
 }
 
                          
 
 function onSuccessUpsert(param) {
-    cordova.require("com.salesforce.util.logger").logToConsole("onSuccessUpsert: " + param);
+    logToConsole()("onSuccessUpsert: " + param);
     $("#div_soup_status_line").html("Soup upsert OK");
 }
 
 function onErrorUpsert(param) {
-    cordova.require("com.salesforce.util.logger").logToConsole("onErrorUpsert: " + param);
+    logToConsole()("onErrorUpsert: " + param);
     $("#div_soup_status_line").html("Soup upsert ERROR");
 }
 
@@ -245,7 +243,7 @@ function onErrorUpsert(param) {
     
 function onSuccessQuerySoup(cursor) {
 
-    cordova.require("com.salesforce.util.logger").logToConsole("onSuccessQuerySoup totalPages: " + cursor.totalPages);
+    logToConsole()("onSuccessQuerySoup totalPages: " + cursor.totalPages);
     lastSoupCursor = cursor;
 
     $("#div_sfdc_soup_entry_list").html("");
@@ -276,12 +274,12 @@ function onSuccessQuerySoup(cursor) {
 
 
 function onErrorQuerySoup(param) {
-    cordova.require("com.salesforce.util.logger").logToConsole("onErrorQuerySoup: " + param);
+    logToConsole()("onErrorQuerySoup: " + param);
 }
 
 
 function onSuccessRetrieveEntries(entries ) {
-    cordova.require("com.salesforce.util.logger").logToConsole("onSuccessRetrieveEntries : " + entries.length);
+    logToConsole()("onSuccessRetrieveEntries : " + entries.length);
     
     $("#div_sfdc_soup_entry_list").html("");
     var ul = $('<ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="a"> ' + 
@@ -307,24 +305,24 @@ function onSuccessRetrieveEntries(entries ) {
 }
 
 function onErrorRetrieveEntries(param) {
-    cordova.require("com.salesforce.util.logger").logToConsole("onErrorRetrieveEntries: " + param);
+    logToConsole()("onErrorRetrieveEntries: " + param);
 }
 
 
 
 function onSuccessRemoveSoup(param) {
-    cordova.require("com.salesforce.util.logger").logToConsole("onSuccessRemoveSoup: " + param);
+    logToConsole()("onSuccessRemoveSoup: " + param);
     $("#div_soup_status_line").html("Soup removed: " + SAMPLE_SOUP_NAME);
 }
 function onErrorRemoveSoup(param) {
-    cordova.require("com.salesforce.util.logger").logToConsole("onErrorRemoveSoup: " + param);
+    logToConsole()("onErrorRemoveSoup: " + param);
     $("#div_soup_status_line").html("removeSoup ERROR");
 }
 
 
 
 function onSoupExistsDone(param) {
-    cordova.require("com.salesforce.util.logger").logToConsole("onSoupExistsDone: " + param);
+    logToConsole()("onSoupExistsDone: " + param);
     $("#div_soup_status_line").html("Soup exists: " + param);
 }
 
@@ -333,8 +331,7 @@ function onSoupExistsDone(param) {
 
 
 function onSuccessSfdcContacts(response) {
-    var logToConsole = cordova.require("com.salesforce.util.logger").logToConsole;
-    logToConsole("onSuccessSfdcContacts: received " + response.totalSize + " contacts");
+    logToConsole()("onSuccessSfdcContacts: received " + response.totalSize + " contacts");
     
 	var entries = [];
     
@@ -345,18 +342,18 @@ function onSuccessSfdcContacts(response) {
     ul.append($('<li data-role="list-divider">Salesforce Contacts: ' + response.totalSize + '</li>'));
     $.each(response.records, function(i, contact) {
            entries.push(contact);
-           logToConsole("name: " + contact.Name);
+           logToConsole()("name: " + contact.Name);
            var newLi = $("<li><a href='#'>" + (i+1) + " - " + contact.Name + "</a></li>");
            ul.append(newLi);
            });
     
     if (entries.length > 0) {
-        sfSmartstore.upsertSoupEntries(SAMPLE_SOUP_NAME,
+        sfSmartstore().upsertSoupEntries(SAMPLE_SOUP_NAME,
                                                entries,
                                                
                                                function(items) {
                                                    var statusTxt = "upserted: " + items.length + " contacts";
-                                                   logToConsole(statusTxt);
+                                                   logToConsole()(statusTxt);
                                                    $("#div_soup_status_line").html(statusTxt);
                                                     $("#div_sfdc_contact_list").trigger( "create" );
                                                },
@@ -371,6 +368,6 @@ function onSuccessSfdcContacts(response) {
 
 
 function onErrorSfdc(error) {
-    cordova.require("com.salesforce.util.logger").logToConsole("onErrorSfdc: " + JSON.stringify(error));
+    logToConsole()("onErrorSfdc: " + JSON.stringify(error));
     alert('Error getting sfdc contacts!');
 }
