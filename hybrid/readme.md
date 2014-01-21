@@ -7,7 +7,7 @@ cordova create $appname com.salesforce.$template $appname
 cd $appname
 cordova platform add android
 cordova plugin add org.apache.cordova.contacts
-cordova plugin add https://github.com/wmathurin/SalesforceMobileSDK-CordovaPlugin#cordova33ns
+cordova plugin add https://github.com/wmathurin/SalesforceMobileSDK-CordovaPlugin#cordova33
 node plugins/com.salesforce/postinstall.js 19 true
 cp -r <path to SalesforceMobileSDK-Samples>/hybrid/$template/* www/
 cordova build
