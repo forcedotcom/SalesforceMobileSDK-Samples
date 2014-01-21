@@ -42,21 +42,18 @@
 	
     var forcetkClient;
     var debugMode = true;
-    var logToConsole = cordova.require("com.salesforce.util.logger").logToConsole;
 
     $(function() {
         //Add event listeners and so forth here
-        logToConsole("onLoad: jquery ready");
 		document.addEventListener("deviceready", onDeviceReady,false);
     });
 
         
     // When this function is called, Cordova has been initialized and is ready to roll 
     function onDeviceReady() {
-        logToConsole("onDeviceReady: Cordova ready");
+        cordova.require("com.salesforce.util.logger").logToConsole("onDeviceReady: Cordova ready");
         //Call getAuthCredentials to get the initial session credentials
-        var sfOAuthPlugin = cordova.require("com.salesforce.plugin.oauth");
-        sfOAuthPlugin.getAuthCredentials(salesforceSessionRefreshed, getAuthCredentialsError);
+        cordova.require("com.salesforce.plugin.oauth").getAuthCredentials(salesforceSessionRefreshed, getAuthCredentialsError);
         
         //register to receive notifications when autoRefreshOnForeground refreshes the sfdc session
         document.addEventListener("salesforceSessionRefresh",salesforceSessionRefreshed,false);
@@ -69,7 +66,7 @@
     }
 
     function salesforceSessionRefreshed(creds) {
-        logToConsole("salesforceSessionRefreshed");
+        cordova.require("com.salesforce.util.logger").logToConsole("salesforceSessionRefreshed");
 		
         // Depending on how we come into this method, `creds` may be callback data from the auth
         // plugin, or an event fired from the plugin.  The data is different between the two.
@@ -85,15 +82,11 @@
     }
 
     function getAuthCredentialsError(error) {
-        logToConsole("getAuthCredentialsError: " + error);
+        cordova.require("com.salesforce.util.logger").logToConsole("getAuthCredentialsError: " + error);
     }
         
     </script>
         
-	<!-- load our app-specific code -->
-    <script src="cordova.force.js"></script>
-
-
 	<!-- Bind js to index.html -->
     <script src="smartstoreexplorer.js"></script>     
 
