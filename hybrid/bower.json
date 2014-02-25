@@ -4,6 +4,6 @@
   "dependencies": {
     "ratchet": "1.0.2",
     "fastclick": "0.6.2",
-    "mobilesdk-shared": "wmathurin/SalesforceMobileSDK-Shared#cordova33"
+    "mobilesdk-shared": "wmathurin/SalesforceMobileSDK-Shared#cordova34"
   }
 }
