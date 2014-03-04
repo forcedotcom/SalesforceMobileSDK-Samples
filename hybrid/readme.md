@@ -1,7 +1,4 @@
-## To create an application for ios or android, follow the steps below.
-- $appname is whatever you want
-- $template should be vfconnector, contactexplorer, smartstoreexplorer, accounteditor, usersearch, userandgroupsearch or fileexplorer
-
+## To create an application for ios or android
 <pre>
 cordova create $appname com.salesforce.$template $appname
 cd $appname
@@ -14,6 +11,9 @@ node plugin/com.salesforce/postinstall-ios.js                                   
 cp -r <path to SalesforceMobileSDK-Samples>/hybrid/$template/* www/
 cordova build
 </pre>
+Where:
+- $appname is whatever you want
+- $template should be vfconnector, contactexplorer, smartstoreexplorer, accounteditor, usersearch, userandgroupsearch or fileexplorer
 
 ## To load the android project in eclipse:
 - start eclipse and pick the $appname folder as root for your workspace
@@ -23,8 +23,8 @@ cordova build
 - for platforms/android, click on the project name, and change it to $appname
 - once everything is built, right-click on the $appname project and choose run as Android application
 
-## To lad the ios project in xcode:
-- start xode and pick $appname/platforms/ios/$appname.xcodeproj
+## To load the ios project in xcode:
+- start xcode and pick $appname/platforms/ios/$appname.xcodeproj
 - build and run
 
 ## To run the application from the command line, simply do:
