@@ -8,7 +8,7 @@ cordova platform add android                                                    
 node plugins/com.salesforce/postinstall-android.js 19 true                              (for android)
 cordova platform add ios                                                                (for ios)
 node plugin/com.salesforce/postinstall-ios.js                                           (for ios)
-cp -r <path to SalesforceMobileSDK-Samples>/hybrid/$template/* www/
+cp -r (path to SalesforceMobileSDK-Samples)/hybrid/$template/* www/
 cordova build
 </pre>
 Where:
