@@ -1,0 +1,1 @@
+../../bower_components/mobilesdk-shared/libs/forcetk.mobilesdk.js
