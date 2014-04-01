@@ -5,6 +5,7 @@
 
 var SAMPLE_SOUP_NAME = "myPeopleSoup";
 var lastSoupCursor = null;
+var sfOAuthPlugin = function() {return cordova.require("com.salesforce.plugin.oauth");};
 var sfSmartstore = function() {return cordova.require("com.salesforce.plugin.smartstore");};
 var logToConsole = function() {return cordova.require("com.salesforce.util.logger").logToConsole;};
 
@@ -29,11 +30,15 @@ function regLinkClickHandlers() {
                            $("#console").html("");
     });
                   
+
+    $('#link_show_inspector').click(function() {
+             logToConsole()("link_show_inspector clicked");
+             sfSmartstore().showInspector();
+             });
          
     $('#link_logout').click(function() {
              logToConsole()("link_logout clicked");
-             var sfOAuthPlugin = cordova.require("com.salesforce.plugin.oauth");
-             sfOAuthPlugin.logout();
+             sfOAuthPlugin().logout();
              });
     
     $('#link_reg_soup').click(function() {
