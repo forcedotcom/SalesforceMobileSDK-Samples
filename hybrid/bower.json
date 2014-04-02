@@ -1,9 +1,0 @@
-{
-  "name": "hybrid-sample-apps",
-  "version": "2.2.0",
-  "dependencies": {
-    "ratchet": "1.0.2",
-    "fastclick": "0.6.2",
-    "mobilesdk-shared": "forcedotcom/SalesforceMobileSDK-Shared#unstable23"
-  }
-}

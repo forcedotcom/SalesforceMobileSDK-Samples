@@ -1,1 +1,1 @@
-../../bower_components/mobilesdk-shared/libs/cordova.force.js
+../dependencies/mobilesdk-shared/libs/cordova.force.js

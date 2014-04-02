@@ -1,1 +1,1 @@
-../../bower_components/backbone/backbone-min.js
+../dependencies/backbone/backbone-min.js

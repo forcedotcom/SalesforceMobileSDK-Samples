@@ -1,1 +1,1 @@
-../../bower_components/mobilesdk-shared/libs/smartsync.js
+../dependencies/mobilesdk-shared/libs/smartsync.js
