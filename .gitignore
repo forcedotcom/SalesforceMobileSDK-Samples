@@ -11,4 +11,5 @@ proguard-project.txt
 project.xcworkspace
 xcuserdata
 .settings
+bower_components
 bower_components/
