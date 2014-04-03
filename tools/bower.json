@@ -15,30 +15,6 @@
         },
         "fastclick": {
             ".": "lib/fastclick.js"
-        },
-        "salesforcemobilesdk-shared": {
-            ".": [
-                "libs/*.js",
-                "test/Mock*.js"
-            ]
-        },
-        "jquery": {
-            ".": [
-                "jquery.js",
-                "jquery.min.js"
-            ]
-        },
-        "backbone": {
-            ".": "backbone*.js"
-        },
-        "underscore": {
-            ".": "underscore*.js"
-        },
-        "qunit": {
-            ".": [ 
-                "qunit/qunit.js",
-                "qunit/qunit.css"
-            ]
         }
     }
 }

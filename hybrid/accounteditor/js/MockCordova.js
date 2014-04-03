@@ -1,1 +1,1 @@
-../dependencies/salesforcemobilesdk-shared/MockCordova.js
+../dependencies/salesforcemobilesdk-shared/test/MockCordova.js
