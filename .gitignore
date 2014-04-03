@@ -11,4 +11,4 @@ proguard-project.txt
 project.xcworkspace
 xcuserdata
 .settings
-bower_components/
+node_modules/

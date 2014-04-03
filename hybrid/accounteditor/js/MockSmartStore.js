@@ -1,1 +1,1 @@
-../../bower_components/mobilesdk-shared/test/MockSmartStore.js
+../dependencies/salesforcemobilesdk-shared/test/MockSmartStore.js

@@ -1,1 +1,1 @@
-../../bower_components/fastclick/lib/fastclick.js
+../dependencies/fastclick/fastclick.js

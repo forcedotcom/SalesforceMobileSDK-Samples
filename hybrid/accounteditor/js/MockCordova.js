@@ -1,1 +1,1 @@
-../../bower_components/mobilesdk-shared/test/MockCordova.js
+../dependencies/salesforcemobilesdk-shared/test/MockCordova.js
