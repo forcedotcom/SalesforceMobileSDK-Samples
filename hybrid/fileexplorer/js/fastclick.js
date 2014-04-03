@@ -1,1 +1,1 @@
-../dependencies/fastclick/lib/fastclick.js
+../dependencies/fastclick/fastclick.js

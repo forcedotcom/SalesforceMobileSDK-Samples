@@ -13,3 +13,5 @@ xcuserdata
 .settings
 bower_components
 bower_components/
+node_modules/
+dependencies/

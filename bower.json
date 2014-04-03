@@ -1,9 +1,44 @@
 {
-  "name": "salesforcemobilesdk-samples",
-  "version": "2.3.0",
-  "dependencies": {
-    "ratchet": "1.0.2",
-    "fastclick": "0.6.2",
-    "salesforcemobilesdk-shared": "wmathurin/SalesforceMobileSDK-Shared#unstable23"
-  }
+    "name": "salesforcemobilesdk-samples",
+    "version": "2.3.0",
+    "dependencies": {
+        "ratchet": "1.0.2",
+        "fastclick": "0.6.2",
+        "salesforcemobilesdk-shared": "wmathurin/SalesforceMobileSDK-Shared#unstable23"
+    },
+    "exportsOverride": {
+        "ratchet": {
+            ".": [
+                "dist/ratchet.js",
+                "dist/ratchet.css"
+            ]
+        },
+        "fastclick": {
+            ".": "lib/fastclick.js"
+        },
+        "salesforcemobilesdk-shared": {
+            ".": [
+                "libs/*.js",
+                "test/Mock*.js"
+            ]
+        },
+        "jquery": {
+            ".": [
+                "jquery.js",
+                "jquery.min.js"
+            ]
+        },
+        "backbone": {
+            ".": "backbone*.js"
+        },
+        "underscore": {
+            ".": "underscore*.js"
+        },
+        "qunit": {
+            ".": [ 
+                "qunit/qunit.js",
+                "qunit/qunit.css"
+            ]
+        }
+    }
 }

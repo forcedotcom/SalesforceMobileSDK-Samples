@@ -1,1 +1,1 @@
-../dependencies/salesforcemobilesdk-shared/libs/forcetk.mobilesdk.js
+../dependencies/salesforcemobilesdk-shared/forcetk.mobilesdk.js

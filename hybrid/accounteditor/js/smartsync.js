@@ -1,1 +1,1 @@
-../dependencies/salesforcemobilesdk-shared/libs/smartsync.js
+../dependencies/salesforcemobilesdk-shared/smartsync.js

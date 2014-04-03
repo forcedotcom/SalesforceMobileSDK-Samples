@@ -1,1 +1,1 @@
-../dependencies/salesforcemobilesdk-shared/libs/cordova.force.js
+../dependencies/salesforcemobilesdk-shared/cordova.force.js

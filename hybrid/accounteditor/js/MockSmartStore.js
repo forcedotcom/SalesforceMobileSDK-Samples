@@ -1,1 +1,1 @@
-../dependencies/salesforcemobilesdk-shared/test/MockSmartStore.js
+../dependencies/salesforcemobilesdk-shared/MockSmartStore.js
