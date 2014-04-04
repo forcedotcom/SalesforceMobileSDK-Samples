@@ -49,7 +49,8 @@
   </header>
   <footer class="bar bar-footer">
     <span id="offlineStatus"></span>
-    <a class="btn btn-nav pull-right switchUser " >Switch User</a>
+    <a class="btn btn-nav pull-right logoutUser">Logout User</a>
+    <a class="btn btn-nav pull-right switchUser">Switch User</a>
     <a class="btn btn-nav pull-right inspectSmartstore">SmartStore</a>
   </footer>
 
@@ -245,8 +246,9 @@ app.views.SearchPage = Backbone.View.extend({
 
     events: {
         "keyup .search-key": "search",
+        "click .inspectSmartstore": "inspectSmartstore",
         "click .switchUser": "switchUser",
-        "click .inspectSmartstore": "inspectSmartstore"
+        "click .logoutUser": "logoutUser"
     },
 
     initialize: function() {
@@ -267,12 +269,16 @@ app.views.SearchPage = Backbone.View.extend({
         this.model.fetch();
     },
 
+    inspectSmartstore: function(event) {
+        cordova.require("com.salesforce.plugin.smartstore").showInspector();
+    },
+
     switchUser: function(event) {
         cordova.require("com.salesforce.plugin.sfaccountmanager").switchToUser();
     },
 
-    inspectSmartstore: function(event) {
-        cordova.require("com.salesforce.plugin.smartstore").showInspector();
+    logoutUser: function(event) {
+        cordova.require("com.salesforce.plugin.sfaccountmanager").logout();
     }
 });
 
