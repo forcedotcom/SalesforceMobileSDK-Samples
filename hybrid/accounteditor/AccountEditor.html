@@ -4,6 +4,7 @@
 <title>Accounts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
 <link rel="stylesheet" href="css/ratchet.css"/>
+<link rel="stylesheet" href="css/ratchet-theme-android.css"/> <!-- TODO import ratchet-theme.css instead and have ratchet-theme.css point to the theme for the platform -->
 <link rel="stylesheet" href="css/styles.css"/>
 </head>
 
@@ -42,49 +43,49 @@
 
 <!-- --------------------------------------- Search page template ------------------------------------------------- -->
 <script id="search-page" type="text/template">
-  <header class="bar-title">
+  <header class="bar bar-nav">
+    <a class="btn btn-nav pull-right" href="#add">Create</a>
     <h1 class="title">Accounts</h1>
-    <a class="button" href="#add">Create</a>
   </header>
-  <footer class="bar-footer">
+  <footer class="bar bar-footer">
     <span id="offlineStatus"></span>
-    <a class="button switchUser" >Switch User</a>
-    <a class="button inspectSmartstore">SmartStore</a>
+    <a class="btn btn-nav pull-right switchUser " >Switch User</a>
+    <a class="btn btn-nav pull-right inspectSmartstore">SmartStore</a>
   </footer>
 
-  <div class="bar-standard bar-header-secondary">
+  <div class="bar bar-standard bar-header-secondary">
     <input type="search" class="search-key" placeholder="Search"/>
   </div>
 
   <div class="content">
-    <ul class="list"></ul>
+    <ul class="table-view"></ul>
   </div>
 </script>
 
 <!-- --------------------------------------- Online/Offline Toggler Template -------------------------------------- -->
 
 <script id="offline-toggler" type="text/template">
-  <a class="<%= isOnline ? 'button-positive' : 'button-negative' %>"><%= (isOnline ? "Online" : "Offline") %></a>
+  <a class="btn <%= isOnline ? 'btn-positive' : 'btn-negative' %>"><%= (isOnline ? "Online" : "Offline") %></a>
 </script>
 
 <!-- --------------------------------------- Sync Page Template --------------------------------------------------- -->
 
 <script id="sync-page" type="text/template">
-  <header class="bar-title">
-    <a class="button-prev">Back</a>
+  <header class="bar bar-nav">
+    <a class="btn pull-left back">Back</a>
     <h1 class="title">Sync</h1>
   </header>
 
-  <footer class="bar-footer">
-    <span class="button-positive">Online</span>
+  <footer class="bar bar-footer">
+    <span class="btn btn-positive">Online</span>
   </footer>
 
-  <div class="bar-standard bar-header-secondary">
-    <a class="button button-block sync">Process <%= countLocallyModified %> records</a>
+  <div class="bar bar-standard bar-header-secondary">
+    <a class="btn btn-block sync">Process <%= countLocallyModified %> records</a>
   </div>
 
   <div class="content">
-    <ul class="list"></ul>
+    <ul class="table-view"></ul>
   </div>
 </script>
 
@@ -92,15 +93,15 @@
 <script id="account-list-item" type="text/template">
   <a href="#edit/accounts/<%= Id %>">
     <div>
-      <span class="important"><%= Name %></span><br/>
-      <%= Industry %><br/>
-      <span class="not-important"><%= Id %></span><br/>
+      <span class="important"><%= Name %></span>
+      <br/><%= Industry %>
+      <br/><span class="not-important"><%= Id %></span>
       <% if (__sync_failed__) { %>
-      <span class="count-negative">Failed to sync</span>
+      <span class="pull-right badge badge-negative">Failed to sync</span>
       <% } else if (__local__) { %>
-      <span class="count-main">Locally<%= (__locally_created__ ? " created" : "") + (__locally_updated__ ? " updated" : "") + (__locally_deleted__ ? " deleted" : "") %></span>
+      <span class="pull-right badge badge-primary">Locally<%= (__locally_created__ ? " created" : "") + (__locally_updated__ ? " updated" : "") + (__locally_deleted__ ? " deleted" : "") %></span>
       <% } else { %>
-      <span class="count-positive">Cached</span>
+      <span class="pull-right badge badge-positive">Cached</span>
       <% } %>
     </div>
   </a>
@@ -108,22 +109,24 @@
 
 <!-- --------------------------------------- Add/edit account page template -------------------------------------- -->
 <script id="edit-account-page" type="text/template">
-  <header class="bar-title">
-    <a class="button-prev">Back</a>
+  <header class="bar bar-nav">
+    <a class="btn btn-nav pull-left back">Back</a>
+    <a class="btn btn-nav pull-right btn-negative toggleDelete">Delete</a>
     <h1 class="title"><%= action %> Account</h1>
-    <a class="button toggleDelete">Delete</a>
   </header>
 
-  <footer class="bar-footer">
+  <footer class="bar bar-footer">
     <span id="offlineStatus"></span>
   </footer>
 
   <div class="content">
     <div class="content-padded">
 
+<!--
       <% if (__local__) { %>
-      <span class="count-main">Locally<%= (__locally_created__ ? " created" : "") + (__locally_updated__ ? " updated" : "") + (__locally_deleted__ ? " deleted" : "") %></span><br/><br/>
+      <span class="badge badge-primary">Locally<%= (__locally_created__ ? " created" : "") + (__locally_updated__ ? " updated" : "") + (__locally_deleted__ ? " deleted" : "") %></span><br/><br/>
       <% } %>
+-->
 
       <div class="input-group">
         <div class="input-row" id="accountName">
@@ -152,9 +155,11 @@
         </div>
         <% } %>
       </div>
-      <a class="button save">Save</a>
-      <a class="button merge">Merge</a>
-      <a class="button overwrite">Overwrite</a>
+    </div>
+    <div class="content-padded">
+      <a class="btn btn-primary save">Save</a>
+      <a class="btn btn-positive merge">Merge</a>
+      <a class="btn btn-negative overwrite">Overwrite</a>
     </div>
   </div>
 </script>
@@ -294,7 +299,7 @@ app.views.AccountListItemView = Backbone.View.extend({
 
     render: function(eventName) {
         var templateData = _.extend({__sync_failed__:false}, this.model.toJSON());
-        $(this.el).html(this.template(templateData));
+        $(this.el).addClass("table-view-cell").html(this.template(templateData));
         return this;
     },
 
@@ -335,7 +340,7 @@ app.views.SyncPage = Backbone.View.extend({
     template: _.template($("#sync-page").html()),
 
     events: {
-        "click .button-prev": "goBack",
+        "click .back": "goBack",
         "click .sync": "sync"
     },
 
@@ -398,7 +403,7 @@ app.views.EditAccountPage = Backbone.View.extend({
     template: _.template($("#edit-account-page").html()),
 
     events: {
-        "click .button-prev": "goBack",
+        "click .back": "goBack",
         "change": "change",
         "click .save": "save",
         "click .merge": "saveMerge",
@@ -444,7 +449,7 @@ app.views.EditAccountPage = Backbone.View.extend({
 
     showFieldError: function(field, message, error) {
         var errorEl = $("#account" + field + "Error", this.el);
-        errorEl.addClass(error ? "count-negative" : "count-other");
+        errorEl.addClass(error ? "badge badge-negative" : "count-other");
         errorEl.html(message);
         errorEl.show();
     },
