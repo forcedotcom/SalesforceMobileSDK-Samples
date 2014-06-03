@@ -5,7 +5,7 @@
         "ratchet": "1.0.2",
         "ratchet2": "twbs/ratchet#v2.0.2",
         "fastclick": "0.6.2",
-        "salesforcemobilesdk-shared": "wmathurin/SalesforceMobileSDK-Shared#unstable23"
+        "salesforcemobilesdk-shared": "forcedotcom/SalesforceMobileSDK-Shared#unstable"
     },
     "exportsOverride": {
         "ratchet": {
