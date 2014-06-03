@@ -1,3 +1,14 @@
 .DS_Store
-xcuserdata
+.metadata/
+bin/
+coverage.em
+coverage/
+gen/
+instrumentation/
+junit-reports/
+local.properties
+proguard-project.txt
 project.xcworkspace
+xcuserdata
+.settings
+node_modules/

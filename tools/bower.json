@@ -1,0 +1,25 @@
+{
+    "name": "salesforcemobilesdk-samples",
+    "version": "2.3.0",
+    "dependencies": {
+        "ratchet": "1.0.2",
+        "ratchet2": "twbs/ratchet#v2.0.2",
+        "fastclick": "0.6.2",
+        "salesforcemobilesdk-shared": "wmathurin/SalesforceMobileSDK-Shared#unstable23"
+    },
+    "exportsOverride": {
+        "ratchet": {
+            ".": [
+                "dist/*.css"
+            ]
+        },
+        "ratchet2": {
+            ".": [
+                "dist/css/*.css"
+            ]
+        },
+        "fastclick": {
+            ".": "lib/fastclick.js"
+        }
+    }
+}

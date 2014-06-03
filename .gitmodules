@@ -1,0 +1,3 @@
+[submodule "Android/tutorials/NativeAndroidTutorial/WarehouseApp/forcedroid"]
+	path = Android/tutorials/NativeAndroidTutorial/WarehouseApp/forcedroid
+	url = https://github.com/forcedotcom/SalesforceMobileSDK-Android

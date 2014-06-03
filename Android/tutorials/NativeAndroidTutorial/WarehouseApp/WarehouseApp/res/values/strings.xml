@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_type">com.samples.warehouse.login</string>
+	<string name="app_name"><b>WarehouseApp</b></string>
+	<string name="api_version">v28.0</string>
+
+	<!-- Main screen -->
+	<string name="logout_button">Logout</string>
+	<string name="clear_button">Clear</string>
+	
+	<!-- Detail screen -->
+	<string name="name_label">Name</string>
+	<string name="price_label">Price</string>
+	<string name="quantity_label">Quantity</string>
+	<string name="update_button">Update</string>	
+</resources>

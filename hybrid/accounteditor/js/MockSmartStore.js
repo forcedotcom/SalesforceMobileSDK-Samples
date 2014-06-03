@@ -1,0 +1,1 @@
+../dependencies/salesforcemobilesdk-shared/test/MockSmartStore.js
