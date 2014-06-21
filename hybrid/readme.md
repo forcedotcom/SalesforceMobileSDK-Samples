@@ -7,9 +7,8 @@ cordova plugin add https://github.com/wmathurin/SalesforceMobileSDK-CordovaPlugi
 cordova platform add android                                                            (for android)
 node plugins/com.salesforce/postinstall-android.js 19 true                              (for android)
 cordova platform add ios                                                                (for ios)
-node plugin/com.salesforce/postinstall-ios.js                                           (for ios)
 cp -r (path to SalesforceMobileSDK-Samples)/hybrid/$template/* www/
-cordova build
+cordova prepare
 </pre>
 Where:
 - $appname is whatever you want
