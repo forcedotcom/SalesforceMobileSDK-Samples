@@ -575,9 +575,10 @@ app.Router = Backbone.StackRouter.extend({
         this.slidePage(app.editPage);
     },
 
-    editAccount: function(id) {
+    editAccount: function(id, cacheMode) {
         var that = this;
         var account = new app.models.Account({Id: id});
+        cacheMode = cacheMode || account.cacheMode("read");
         account.fetch({
             success: function(data) {
                 app.editPage.model = account;
@@ -585,7 +586,8 @@ app.Router = Backbone.StackRouter.extend({
             },
             error: function() {
                 alert("Failed to get record for edit");
-            }
+            },
+            cacheMode: cacheMode
         });
     },
 
