@@ -36,8 +36,8 @@ function appStart(creds)
     cordova.require("com.salesforce.util.push").registerPushNotificationHandler(
         function(message) {
             // alert(JSON.stringify(message));
-            if (message["payload"] && message["payload"]["Id"] && !message["foreground"]) {
-                app.router.editAccount(message["payload"]["Id"], Force.CACHE_MODE.SERVER_FIRST);
+            if (!message["foreground"] && message["payload"] && message["payload"]["Id"]) {
+                app.router.navigate("#edit/accounts/" + message["payload"]["Id"] + "/true",  {trigger:true});
             }
         },
         function(error) {
