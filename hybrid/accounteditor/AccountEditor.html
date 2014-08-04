@@ -92,7 +92,7 @@
 
 <!-- --------------------------------------- Account list item Template ------------------------------------------ -->
 <script id="account-list-item" type="text/template">
-  <a href="#edit/accounts/<%= Id %>">
+  <a href="#edit/accounts/<%= Id %>/false">
     <div>
       <span class="important"><%= Name %></span>
       <br/><%= Industry %>
@@ -528,7 +528,7 @@ app.Router = Backbone.StackRouter.extend({
         "": "list",
         "list": "list",
         "add": "addAccount",
-        "edit/accounts/:id": "editAccount",
+        "edit/accounts/:id/:fromServer": "editAccount",
         "sync":"sync"
     },
 
@@ -575,10 +575,10 @@ app.Router = Backbone.StackRouter.extend({
         this.slidePage(app.editPage);
     },
 
-    editAccount: function(id, cacheMode) {
+    editAccount: function(id, fromServer) {
         var that = this;
         var account = new app.models.Account({Id: id});
-        cacheMode = cacheMode || account.cacheMode("read");
+        cacheMode = fromServer === "true" ? Force.CACHE_MODE.SERVER_FIRST : account.cacheMode("read");
         account.fetch({
             success: function(data) {
                 app.editPage.model = account;
