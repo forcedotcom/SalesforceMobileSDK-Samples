@@ -32,18 +32,19 @@ function appStart(creds)
     // Force init
     Force.init(creds, null, null, cordova.require("com.salesforce.plugin.oauth").forcetkRefresh);
 
+
     // Register for push
-    cordova.require("com.salesforce.util.push").registerPushNotificationHandler(
-        function(message) {
-            // alert(JSON.stringify(message));
-            if (!message["foreground"] && message["payload"] && message["payload"]["Id"]) {
-                app.router.navigate("#edit/accounts/" + message["payload"]["Id"] + "/true",  {trigger:true});
-            }
-        },
-        function(error) {
-            // alert(JSON.stringify(error));
-        }
-    );
+    // cordova.require("com.salesforce.util.push").registerPushNotificationHandler(
+    //     function(message) {
+    //         // alert(JSON.stringify(message));
+    //         if (!message["foreground"] && message["payload"] && message["payload"]["Id"]) {
+    //             app.router.navigate("#edit/accounts/" + message["payload"]["Id"] + "/true",  {trigger:true});
+    //         }
+    //     },
+    //     function(error) {
+    //         // alert(JSON.stringify(error));
+    //     }
+    // );
 
     // router
     app.router = new app.Router();
